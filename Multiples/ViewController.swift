@@ -10,16 +10,56 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    //Properties
+    var multiple = 0
+    var result = 0
+    
+    //Outlets
+    
+    @IBOutlet weak var background: UIImageView!
+
+    @IBOutlet weak var headingImg: UIImageView!
+
+    @IBOutlet weak var resultLbl: UILabel!
+    @IBOutlet weak var inputTxt: UITextField!
+    @IBOutlet weak var playBtn: UIButton!
+    @IBOutlet weak var addBtn: UIButton!
+    
+    @IBAction func startPlay (sender: UIButton) {
+        
+        if inputTxt.text != nil && inputTxt.text != "" {
+            
+            headingImg.hidden = true
+            inputTxt.hidden = true
+            playBtn.hidden = true
+            resultLbl.hidden = false
+            addBtn.hidden = false
+            multiple = Int(inputTxt.text!)!
+            result = 0 + multiple
+            resultLbl.text = "0 + \(multiple) = \(result)"
+            
+        }
+    
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func onAddPress (sender: UIButton){
+        
+        if result <= 50 {
+            result += multiple
+            resultLbl.text = "\(result-multiple) + \(multiple) = \(result)"
+        } else {
+            initialize()
+        }
+        
     }
-
-
+    
+    func initialize(){
+        headingImg.hidden = false
+        inputTxt.hidden = false
+        inputTxt.text = nil
+        playBtn.hidden = false
+        resultLbl.hidden = true
+        addBtn.hidden = true
+    }
 }
 
