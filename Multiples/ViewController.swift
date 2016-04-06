@@ -53,6 +53,10 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func textFieldDoneEditing(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
     func initialize(){
         headingImg.hidden = false
         inputTxt.hidden = false
